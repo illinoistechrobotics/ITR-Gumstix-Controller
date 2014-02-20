@@ -1,0 +1,26 @@
+Port.Pin (Port,Pin)  Description
+
+Outputs:
+
+G.3		6,3			Blue LED
+B.4		1,4			Yellow LED
+C.0		2,0			Arm UP
+C.1		2,1			Arm DOWN
+C.2		2,2			Gripper HOLD (single Solenoid)
+
+Inputs:
+//Do not currently exist. Should probably fix this
+F.0		5,0			Arm Location (Potentiometer)
+G.0		6,0			Arm Up microswitch
+G.1		6,1			Arm down microswitch
+
+
+PWMs, moving from outside of board:
+
+Motor 1
+Motor 2
+Motor 3
+Motor 4
+UNUSED
+UNUSED
+
