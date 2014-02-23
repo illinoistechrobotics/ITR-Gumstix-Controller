@@ -16,3 +16,13 @@
 *.exe
 *.out
 *.app
+
+# Generated files
+common/robot_queue_test
+controller/controller-colonel
+controller/controller-fenrir
+controller/controller-roslund
+robot/robot-colonel
+robot/robot-fenrir
+robot/robot-roslund
+
