@@ -15,6 +15,7 @@ BINARY = robot
 LOCAL_OBJ_ROSLUND = robot_events_roslund.o
 LOCAL_OBJ_COLONEL = robot_events_colonel.o
 LOCAL_OBJ_FENRIR = robot_events_fenrir.o
+LOCAL_OBJ_MODULUS = robot_events_modulus.o
 
 LOCAL_OBJ  = robot.o \
 			 mod_i2c-io.o \
@@ -52,10 +53,11 @@ COMMON_SRC = $(COMMON_OBJ: %.o=$(COMMON)/%.c)
 OBJ_ROSLUND = $(LOCAL_OBJ) $(LOCAL_OBJ_ROSLUND) $(COMMON_OBJ) $(I2CIO_OBJ)
 OBJ_COLONEL = $(LOCAL_OBJ) $(LOCAL_OBJ_COLONEL) $(COMMON_OBJ) $(I2CIO_OBJ)
 OBJ_FENRIR = $(LOCAL_OBJ) $(LOCAL_OBJ_FENRIR) $(COMMON_OBJ) $(I2CIO_OBJ)
+OBJ_MODULUS = $(LOCAL_OBJ) $(LOCAL_OBJ_MODULUS) $(COMMON_OBJ) $(I2CIO_OBJ)
 SRC = $(LOCAL_SRC) $(COMMON_SRC)
 
 .PHONY: all
-all: $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir
+all: $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir $(BINARY)-modulus
 
 $(BINARY)-roslund: $(OBJ_ROSLUND)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJ_ROSLUND) -o $(BINARY)-roslund
@@ -77,7 +79,7 @@ $(BINARY)-roslund: $(OBJ_ROSLUND)
 
 .PHONY: clean
 clean:
-	-rm -f $(OBJ_ROSLUND) $(OBJ_COLONEL) $(OBJ_FENRIR) $(BINARY) $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir
+	-rm -f $(OBJ_ROSLUND) $(OBJ_COLONEL) $(OBJ_FENRIR) $(OBJ_MODULUS) $(BINARY) $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir $(BINARY)-modulus
 
 .PHONY: roslund
 roslund: $(BINARY)-roslund
@@ -93,3 +95,10 @@ fenrir: $(BINARY)-fenrir
 
 $(BINARY)-fenrir: $(OBJ_FENRIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJ_FENRIR) -o $(BINARY)-fenrir
+
+.PHONY: modulus
+modulus: $(BINARY)-modulus
+
+$(BINARY)-modulus: $(OBJ_MODULUS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJ_MODULUS) -o $(BINARY)-modulus
+
