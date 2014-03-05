@@ -56,50 +56,19 @@ void on_shutdown() {
 	ev.value = 0;
 
 	log_string(-1, "Robot is shutting down");
-	setPin(1,4,1);
-	setPin(6,3,1);
 	send_event(&ev);
 }
 int gripper = 0, suck = 0, drum = 0;
 void on_button_up(robot_event *ev) {
-	if(ev->index == CON_ARM_UP){
-		setPin(2,0,0);
-	}
-	if(ev->index == CON_ARM_DOWN){
-		setPin(2,1,0);
-	}
 
-	if(ev->index == CON_REAR){
-		setPin(2,3,0);
-	}
-	if(ev->index == CON_FRONT){
-		setPin(2,4,0);
-	}
 }
 
 void on_button_down(robot_event *ev) {	
 
-	if(ev->index == CON_ARM_UP){
-		setPin(2,0,1);
-	}
-	if(ev->index == CON_ARM_DOWN){
-		setPin(2,1,1);
-	}
-	if(ev->index == CON_GRIP){
-		gripper = 1-gripper;
-		setPin(2,2,gripper);
-	}
-
-	if(ev->index == CON_REAR){
-		setPin(2,3,1);
-	}
-	if(ev->index == CON_FRONT){
-		setPin(2,4,1);
-	}
 }
 
 void on_axis_change(robot_event *ev){
-	if(ev->index == 4) setMotor(4, ev->value);
+
 }
 
 void on_adc_change(robot_event *ev){
@@ -108,9 +77,6 @@ void on_adc_change(robot_event *ev){
 
 void on_motor(robot_event *ev) {
 	if(ev->index == 0) setMotor(0, ev->value);
-	if(ev->index == 1) setMotor(1, ev->value);
-	if(ev->index == 2) setMotor(2, ev->value);
-	if(ev->index == 3) setMotor(3, ev->value);
 }
 
 void on_status_code(robot_event *ev) {
