@@ -10,6 +10,7 @@ LOCAL_OBJ = controller.o joystick.o
 LOCAL_OBJ_ROSLUND = controller_events_roslund.o
 LOCAL_OBJ_COLONEL = controller_events_colonel.o
 LOCAL_OBJ_FENRIR = controller_events_fenrir.o
+LOCAL_OBJ_MODULUS = controller_events_modulus.o
 
 COMMON = ../common
 COMMON_OBJ = robot_comm.o robot_log.o \
@@ -26,8 +27,10 @@ OBJ = $(LOCAL_OBJ) $(COMMON_OBJ)
 OBJ_ROSLUND = $(OBJ) $(LOCAL_OBJ_ROSLUND)
 OBJ_COLONEL = $(OBJ) $(LOCAL_OBJ_COLONEL)
 OBJ_FENRIR = $(OBJ) $(LOCAL_OBJ_FENRIR)
+OBJ_MODULUS = $(OBJ) $(LOCAL_OBJ_MODULUS)
+
 .PHONY: all
-all: $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir
+all: $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir $(BINARY)-modulus
 
 .PHONY: roslund
 colonel: $(BINARY)-roslund
@@ -38,6 +41,9 @@ colonel: $(BINARY)-colonel
 .PHONY: fenrir
 colonel: $(BINARY)-fenrir
 
+.PHONY: modulus
+modulus: $(BINARY)-modulus
+
 $(BINARY)-roslund: $(OBJ_ROSLUND)
 	$(CC) $(CFLAGS) $(OPTS) $(OBJ_ROSLUND) -o $(BINARY)-roslund $(LIBS) 
 
@@ -47,6 +53,11 @@ $(BINARY)-colonel: $(OBJ_COLONEL)
 $(BINARY)-fenrir: $(OBJ_FENRIR)
 	$(CC) $(CFLAGS) $(OPTS) $(OBJ_FENRIR) -o $(BINARY)-fenrir $(LIBS)
 
+$(BINARY)-modulus: $(OBJ_MODULUS)
+	$(CC) $(CFLAGS) $(OPTS) $(OBJ_MODULUS) -o $(BINARY)-modulus $(LIBS)
+
+
+
 %.o: $(COMMON)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 %.o: %.c
@@ -54,4 +65,4 @@ $(BINARY)-fenrir: $(OBJ_FENRIR)
 
 .PHONY: clean
 clean:
-	-rm -f $(OBJ) $(OBJ_ROSLUND) $(OBJ_COLONEL) $(OBJ_FENRIR) $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir $(BINARY)
+	-rm -f $(OBJ) $(OBJ_ROSLUND) $(OBJ_COLONEL) $(OBJ_FENRIR) $(OBJ_MODULUS) $(BINARY)-roslund $(BINARY)-colonel $(BINARY)-fenrir $(BINARY)-modulus $(BINARY)
