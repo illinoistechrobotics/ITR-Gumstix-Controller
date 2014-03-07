@@ -22,7 +22,9 @@ common/robot_queue_test
 controller/controller-colonel
 controller/controller-fenrir
 controller/controller-roslund
+controller/controller-modulus
 robot/robot-colonel
 robot/robot-fenrir
 robot/robot-roslund
+robot/robot-modulus
 
