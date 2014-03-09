@@ -40,7 +40,7 @@ void usage(char *program_name);
 int main(int argc, char *argv[])
 {
 	//server's address
-	char *server_name = "192.168.1.99";
+	char *server_name = "192.168.20.99";
 	unsigned int server_port = 0;
 	log_level = 0;
     bool shutdown = false;

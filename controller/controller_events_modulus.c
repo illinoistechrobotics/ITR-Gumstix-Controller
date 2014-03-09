@@ -52,6 +52,30 @@ void on_axis_change(robot_event *ev) {
         send_event(&new_ev);
         printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
     }
+    if(ev->index == 1){
+        robot_event new_ev;
+        new_ev.command = ROBOT_EVENT_MOTOR;
+        new_ev.index = 1; 
+        new_ev.value = ev->value;
+        send_event(&new_ev);
+        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+    }
+    if(ev->index == 3){
+        robot_event new_ev;
+        new_ev.command = ROBOT_EVENT_MOTOR;
+        new_ev.index = 3; 
+        new_ev.value = ev->value;
+        send_event(&new_ev);
+        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+    }
+    if(ev->index == 4){
+        robot_event new_ev;
+        new_ev.command = ROBOT_EVENT_MOTOR;
+        new_ev.index = 4; 
+        new_ev.value = ev->value;
+        send_event(&new_ev);
+        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+    }
 }
 
 void on_1hz_timer(robot_event *ev) {

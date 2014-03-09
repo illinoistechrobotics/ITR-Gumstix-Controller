@@ -77,6 +77,9 @@ void on_adc_change(robot_event *ev){
 
 void on_motor(robot_event *ev) {
 	if(ev->index == 0) setMotor(0, ev->value);
+	if(ev->index == 1) setMotor(1, ev->value);
+	if(ev->index == 3) setMotor(2, ev->value);
+	if(ev->index == 4) setMotor(3, ev->value);
 }
 
 void on_status_code(robot_event *ev) {
