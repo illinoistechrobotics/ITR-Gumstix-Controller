@@ -64,11 +64,13 @@ void on_button_up(robot_event *ev) {
 }
 
 void on_button_down(robot_event *ev) {	
-
+if(ev->index == 0) setPin(2,0,1);
+if(ev->index == 1) setPin(2,1,1);
 }
 
 void on_axis_change(robot_event *ev){
-
+if(ev->index == 0) setPin(2,0,0);
+if(ev->index == 1) setPin(2,1,0);
 }
 
 void on_adc_change(robot_event *ev){

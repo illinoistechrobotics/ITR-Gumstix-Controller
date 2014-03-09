@@ -37,10 +37,16 @@ void on_shutdown() {
 }
 
 void on_button_up(robot_event *ev) {
-    printf("I PUSHED Button %i \n", ev->index);
+    if(ev->index == 0 || ev->index == 1){
+	send_event(ev);
+        printf("I PUSHED Button %i \n", ev->index);
+    }
 }
 
 void on_button_down(robot_event *ev) {
+    if(ev->index == 0 || ev->index == 1){
+	send_event(ev);
+    }
 }
 
 void on_axis_change(robot_event *ev) {
