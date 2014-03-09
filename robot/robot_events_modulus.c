@@ -60,17 +60,24 @@ void on_shutdown() {
 }
 int gripper = 0, suck = 0, drum = 0;
 void on_button_up(robot_event *ev) {
-
+if(ev->index == 0) setPin(2,0,0);
+if(ev->index == 1) setPin(2,1,0);
+if(ev->index == 2) setPin(2,2,0);
+if(ev->index == 3) setPin(2,3,0);
+if(ev->index == 4) setPin(2,4,0);
+if(ev->index == 5) setPin(2,5,0);
 }
 
 void on_button_down(robot_event *ev) {	
 if(ev->index == 0) setPin(2,0,1);
 if(ev->index == 1) setPin(2,1,1);
+if(ev->index == 2) setPin(2,2,1;
+if(ev->index == 3) setPin(2,3,1);
+if(ev->index == 4) setPin(2,4,1);
+if(ev->index == 5) setPin(2,5,1);
 }
 
 void on_axis_change(robot_event *ev){
-if(ev->index == 0) setPin(2,0,0);
-if(ev->index == 1) setPin(2,1,0);
 }
 
 void on_adc_change(robot_event *ev){

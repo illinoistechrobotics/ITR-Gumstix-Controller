@@ -37,15 +37,16 @@ void on_shutdown() {
 }
 
 void on_button_up(robot_event *ev) {
-    if(ev->index == 0 || ev->index == 1){
+    if(ev->index > -1 || ev->index <6){
 	send_event(ev);
-        printf("I PUSHED Button %i \n", ev->index);
+        printf("Button %i DOWN \n", ev->index);
     }
 }
 
 void on_button_down(robot_event *ev) {
-    if(ev->index == 0 || ev->index == 1){
+    if(ev->index > -1 || ev->index < 6){
 	send_event(ev);
+	printf("Button %i UP \n", ev->index);
     }
 }
 
