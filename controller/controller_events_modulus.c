@@ -38,15 +38,15 @@ void on_shutdown() {
 
 void on_button_up(robot_event *ev) {
     if(ev->index > -1 || ev->index <6){
-	send_event(ev);
-        printf("Button %i DOWN \n", ev->index);
+        send_event(ev);
+        printf("Button %i UP \n", ev->index);
     }
 }
 
 void on_button_down(robot_event *ev) {
     if(ev->index > -1 || ev->index < 6){
-	send_event(ev);
-	printf("Button %i UP \n", ev->index);
+        send_event(ev);
+        printf("Button %i DOWN \n", ev->index);
     }
 }
 
@@ -55,33 +55,57 @@ void on_axis_change(robot_event *ev) {
         robot_event new_ev;
         new_ev.command = ROBOT_EVENT_MOTOR;
         new_ev.index = 0; 
-        new_ev.value = ev->value;
+        
+        if ((127 - ev->value > 24) || (127 - ev->value < -24)){
+            new_ev.value = ev->value;
+        } else {
+            new_ev.value = 127;
+        }
+
         send_event(&new_ev);
-        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+        printf("I MOVED Axis %i to %i \n",ev->index, new_ev.value);
     }
     if(ev->index == 1){
         robot_event new_ev;
         new_ev.command = ROBOT_EVENT_MOTOR;
         new_ev.index = 1; 
-        new_ev.value = ev->value;
+
+        if ((127 - ev->value > 24) || (127 - ev->value < -24)){
+            new_ev.value = ev->value;
+        } else {
+            new_ev.value = 127;
+        }
+
         send_event(&new_ev);
-        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+        printf("I MOVED Axis %i to %i \n",ev->index, new_ev.value);
     }
     if(ev->index == 3){
         robot_event new_ev;
         new_ev.command = ROBOT_EVENT_MOTOR;
         new_ev.index = 3; 
-        new_ev.value = ev->value;
+
+        if ((127 - ev->value > 24) || (127 - ev->value < -24)){
+            new_ev.value = ev->value;
+        } else {
+            new_ev.value = 127;
+        }
+
         send_event(&new_ev);
-        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+        printf("I MOVED Axis %i to %i \n",ev->index, new_ev.value);
     }
     if(ev->index == 4){
         robot_event new_ev;
         new_ev.command = ROBOT_EVENT_MOTOR;
         new_ev.index = 4; 
-        new_ev.value = ev->value;
+
+        if ((127 - ev->value > 24) || (127 - ev->value < -24)){
+            new_ev.value = ev->value;
+        } else {
+            new_ev.value = 127;
+        }
+
         send_event(&new_ev);
-        printf("I MOVED Axis %i to %i \n",ev->index, ev->value);
+        printf("I MOVED Axis %i to %i \n",ev->index, new_ev.value);
     }
 }
 

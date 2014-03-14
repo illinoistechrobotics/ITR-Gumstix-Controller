@@ -78,7 +78,7 @@ void *timer_thread_main(void *arg) {
 	while(1){
 		for(i = 0; i < 9; i++) {
 			robot_queue_enqueue(q, &ev1);
-			usleep(100000);
+			usleep(50000);
 		}
 		robot_queue_enqueue(q, &ev2);
 	}
