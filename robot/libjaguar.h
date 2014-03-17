@@ -36,6 +36,7 @@ int sys_heartbeat(JaguarConnection *conn, uint8_t device);
 int sys_halt(JaguarConnection *conn, uint8_t device);
 int sys_reset(JaguarConnection *conn, uint8_t device);
 int sys_resume(JaguarConnection *conn, uint8_t device);
+int sys_sync_update(JaguarConnection *conn, uint8_t group);
 
 int voltage_enable(JaguarConnection *conn, uint8_t device);
 int voltage_disable(JaguarConnection *conn, uint8_t device);

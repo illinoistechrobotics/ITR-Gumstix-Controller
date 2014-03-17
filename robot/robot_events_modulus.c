@@ -41,6 +41,8 @@
 int flasher = 0;
 JaguarConnection conn;
 int rotating = 0;
+int left = 1;
+int right = 1;
 
 void on_init() {
 	robot_event ev;
@@ -98,15 +100,33 @@ void on_adc_change(robot_event *ev){
 }
 
 void on_motor(robot_event *ev) {
+    if(ev->index == 0) {
+        if(ev->value >= 185) {
+            left = 1;
+            right = -1;
+        } else if(ev->value <= 70) {
+            left = -1;
+            right = 1;
+        } else {
+            left = 1;
+            right = 1;
+        }
+    }
 	if(ev->index == 1) {
-        setMotor(0, ev->value);
-        setMotor(1, ev->value);
-        setMotor(2, ev->value);
-        setMotor(3, ev->value);
+        int power = ev->value - 127;
+        if (left != right) {
+            if (power < 0){
+                power = -power;
+            }
+            power += 20;
+        }
+        setMotor(0, power * left + 127);
+        setMotor(1, power * left + 127);
+        setMotor(2, power * right + 127);
+        setMotor(3, power * right + 127);
     }
 	if(ev->index == 3) {
         int32_t pos;
-        //position_get(&conn, 1, &pos);
 
         if (ev->value < 255){
             pos = ((int32_t) (ev->value - 127)) * 0x00000100;
@@ -114,10 +134,6 @@ void on_motor(robot_event *ev) {
             pos = ((int32_t) 127) * 0x00000100;
         }
 
-        //position_set(&conn, 1, pos);
-        //position_set(&conn, 2, pos);
-        //position_set(&conn, 3, pos);
-        //position_set(&conn, 4, pos);
         position_set_sync(&conn, 1, pos, 1);
         position_set_sync(&conn, 2, pos, 1);
         position_set_sync(&conn, 3, pos, 1);

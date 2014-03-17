@@ -95,7 +95,7 @@ int decode_can_message(CANEncodedMsg *encoded_message, CANMessage *message)
     return 0;
 }
 
-float fixed16_to_float(uint32_t fx)
+float fixed16_to_float(uint16_t fx)
 {
     float fl;
     fl = (float) (fx >> 8);
